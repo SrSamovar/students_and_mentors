@@ -16,6 +16,10 @@ class Student:
         else:
             return 'Ошибка'
         
+    def __str__(self) -> str:
+        return f'{self.name} {self.surname} {self.courses_in_progress} {self.finished_courses}'
+
+
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
@@ -26,7 +30,12 @@ class Mentor:
 class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
-
+    
+    def __str__(self):
+        return f'{self.name}
+                 {self.surname}
+                  '
+                              
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
@@ -40,6 +49,9 @@ class Reviewer(Mentor):
                 student.grades[course] = [grade]
         else:
             return 'Ошибка'
+    
+    def __str__(self):
+        return f'{self.name} {self.surname}'
         
 best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python']
