@@ -17,15 +17,23 @@ class Student:
             return 'Ошибка'
         
     def __str__(self) -> str:
-        return f'{self.name} {self.surname} {self.courses_in_progress} {self.finished_courses}'
+        return f'{self.name} 
+                 {self.surname} 
+                 {", ".join(self.courses_in_progress)} 
+                 {", ".join(self.finished_courses)}
+                 {self._get_average_grade()}'
 
+    def _get_average_grade(self):
+        return sum(self.grades.values()) / len(self.grades)
 
 class Mentor:
     def __init__(self, name, surname):
         self.name = name
         self.surname = surname
         self.courses_attached = []
-        
+    
+    def __lt__(self, other):
+        return self.name < other.name
     
 class Lecturer(Mentor):
     def __init__(self, name, surname):
@@ -34,8 +42,14 @@ class Lecturer(Mentor):
     def __str__(self):
         return f'{self.name}
                  {self.surname}
-                  '
+                 {self._homework_average_grade()}'
                               
+    def _homework_average_grade(self):
+        return sum(self.grades.values()) / len(self.grades)
+    
+    def __lt__(self, other):
+        return self.name < other.name
+
 
 class Reviewer(Mentor):
     def __init__(self, name, surname):
